@@ -15,15 +15,9 @@ jobs:
     - name: Code check
       uses: actions/checkout@v4
 
-    - name: install googletest
-      run: sudo apt install -y libgoogle-glog-dev
-      run: cd /usr/src/gtest
-      run: sudo git clone https://github.com/google/googletest.git
-      run: cd googletest
-      run: sudo cmake .
-      run: sudo make
-      run: sudo make install
+    run: sudo apt install g++
+    run: sudo apt install cmake
 
     -name: make src code
-      run: cd build
+      run: cmake -S . -B cmake-build -DCMAKE_CXX_COMPILER=g++
       run: g++ ../main.cpp -o main
