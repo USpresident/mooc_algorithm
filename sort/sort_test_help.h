@@ -45,6 +45,26 @@ namespace SortTestHelper {
         cout << sortName << " taken: " << elapsedTime << " seconds." << endl;
     }
 
+    template <typename T>
+    bool testSort1(string sortName, Sort::Sort<T> &obj, void (Sort::Sort<T>::*sort)(T[], int), T arr[], int n) {
+        assert(n > 0);
+        clock_t startTime = clock();
+        (obj.*sort)(arr, n);
+        clock_t endTime = clock();
+
+        // PrintArray(arr, n);
+
+        // assert(isSorted(arr, n));
+        if (isSorted(arr, n)) {
+            return true;
+        }
+
+        double elapsedTime = static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC;
+        cout << sortName << ", " << n << " elems, taken: " << elapsedTime << " seconds." << endl;
+
+        return false;
+    }
+
     int *generateRandomArray(int n, int rangeL, int rangeR)
     {
         assert(rangeL <= rangeR);
