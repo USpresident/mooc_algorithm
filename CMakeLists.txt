@@ -1,5 +1,10 @@
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required (VERSION 3.2)
 
-project (demo)
+project (CMAKE_DEMO)
 
-add_executable(main main.cpp)
+set(SRC main.cpp)
+
+message(STATUS "this is binary dir: " ${CMAKE_DEMO_BINARY_DIR})
+message(STATUS "this is source dir: " ${CMAKE_DEMO_SOURCE_DIR})
+
+add_executable(main_exe ${SRC})

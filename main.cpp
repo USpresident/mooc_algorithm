@@ -97,7 +97,7 @@ int main()
      * 如果要打开的目标文件与可执行文件xx.exe不在同一目录，建议使用绝对路径；
      * 如果要打开的目标文件与可执行文件xx.exe在同一目录，可使用相对路径。
      */
-    std::string filename = "testG1.txt";
+    std::string filename = "/code/mooc_algorithm/test_data/testG1.txt";
     GRAPH::ReadGraph<GRAPH::DenseGraph> readGraph(filename, graph); // 无权图
 
     // int eNum = 5;
@@ -133,7 +133,7 @@ int main()
 
     int weightVNum = 8;
     WEIGHTED_GRAPH::SparseGraph<float> weightGraph(weightVNum, false); // 最小生成树针对的是无向图
-    std::string filename2 = "weighted_testG1.txt";
+    std::string filename2 = "/code/mooc_algorithm/test_data/weighted_testG1.txt";
     WEIGHTED_GRAPH::ReadGraph<WEIGHTED_GRAPH::SparseGraph<float>, float> readWeightGraph(filename2, weightGraph);
     // weightGraph.showGraph();
 
