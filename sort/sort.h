@@ -1,10 +1,10 @@
 #ifndef SORT_H
 #define SORT_H
 
-#include <algorithm>
 #include "../common/common.h"
 #include "../heap/heap.h"
-
+#include <algorithm>
+#include <tuple>
 
 namespace Sort {
     //void bubbleSort(int arr[], int size);
@@ -245,23 +245,18 @@ private:
         return j;
     }
 
-    struct QuickSortPartitionIndex {
-        int lt;
-        int gt;
-    };
-
     void quickSort3ways(T arr[], int l, int r) {
         if (r - l <= 15) {
             insertionSort(arr, l, r);
             return;
         }
 
-        QuickSortPartitionIndex index = partition3ways(arr, l, r);
-        quickSort3ways(arr, l, index.lt);
-        quickSort3ways(arr, index.gt, r);
+        auto [lt, gt] = partition3ways(arr, l, r);
+        quickSort3ways(arr, l, lt);
+        quickSort3ways(arr, gt, r);
     }
 
-    QuickSortPartitionIndex partition3ways(T arr[], int l, int r) {
+    std::tuple<int, int> partition3ways(T arr[], int l, int r) {
         int index = rand() % (r - l + 1) + l;
         std::swap(arr[index], arr[l]);
         int lt = l;
@@ -286,12 +281,8 @@ private:
         }
 
         std::swap(arr[l], arr[lt]);
-        QuickSortPartitionIndex result;
-        result.lt = lt - 1;
-        result.gt = gt;
-        return result;
+        return std::make_tuple(lt - 1, gt);
     }
-
 };
 
 }
